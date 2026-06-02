@@ -4,19 +4,27 @@
 #pragma once
 
 namespace Entities {
-  class Wave {
-    // Поля класса
-    // длительность текущая и максимальная, номер
 
-    // Методы класса (изменения):
-    // set_time() - изменение текущей длительности
-    // set_number() - изменение номера волны
+    class Wave {
+    private:
+        int time_current_;
+        int time_max_;
+        int number_;
 
-    // Методы класса (получение):
-    // time() - текущая длительность
-    // end_time() - максимальная длительность
-    // number() - номер волны
-  };
-}
+    public:
+        // Конструктор
+        Wave(int time_max, int number);
 
-#endif
+        // Методы изменения состояния
+        void set_time(int new_time);
+        void set_number(int new_number);
+
+        // Методы получения состояния
+        int time() const;
+        int end_time() const;
+        int number() const;
+    };
+
+} // namespace Entities
+
+#endif // WAVE_HPP_

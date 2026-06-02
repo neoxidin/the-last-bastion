@@ -1,25 +1,38 @@
-#ifndef PLAYER_HPP_
-#define PLAYER_HPP_
+#ifndef ENEMY_HPP_
+#define ENEMY_HPP_
 
 #pragma once
 
+#include <utility>
+
 namespace Entities {
-  class Player {
-    // Поля класса:
-    // максимальное и текущее здоровье, количество монет, текущий уровень, максимальная волна
 
-    // Методы класса (изменение):
-    // add_hp() - добавление текущего здоровья на k единиц, но не более максимального
-    // set_hp() - изменение максимального здоровья
-    // add_money() - добавление монет, максимум - лимит int числа
-    // add_lvl() - добавление 1 к уровню
-    // set_wave() - установка максимальной волны
+    class Enemy {
+    private:
+        int x_;
+        int y_;
+        int hp_current_;
+        int hp_max_;
+        int level_;
+        float speed_;
 
-    // Методы класса (вывод):
-    // hp() - получение текущего ХП
-    // wave() - получение уровня
-    // money() - получение монет
-  };
-}
+    public:
+        // Конструктор
+        Enemy(int x, int y, int hp_max, int level, float speed);
 
-#endif // PLAYER_HPP_
+        // Методы изменения состояния
+        void move(int dx, int dy);
+        void add_hp(int k);
+        void set_hp(int new_hp_max);
+        void set_lvl(int new_level);
+
+        // Методы получения состояния
+        std::pair<int, int> pos() const;
+        int hp() const;
+        int lvl() const;
+        float speed() const;
+    };
+
+} // namespace Entities
+
+#endif // ENEMY_HPP_
